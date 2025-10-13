@@ -58,7 +58,7 @@ Par defaut,  tous les attributs sont envoyer au client lorsqu'on utilise  spring
      [name](./customer-service/src/main/java/enset/ma/customerservice/entities/EmailProjection.java),[email](./customer-service/src/main/java/enset/ma/customerservice/entities/EmailProjection.java)
 
 
-<h3>1. Inventory  Service</h3>
+<h3>2. Inventory  Service</h3>
 
 - Creation :
 On recree un  module   spring boot avec  meme dépendance que  customers services:
@@ -173,3 +173,9 @@ spring.cloud.gateway.discovery.locator.lower-case-service-id=true
 ```
 
 ![image](./images/discovery/img_6.png)
+
+
+
+<h3>5. Creation de  billing service </h3>
+- Creation :
+- 
