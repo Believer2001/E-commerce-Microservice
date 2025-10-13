@@ -147,7 +147,7 @@ On procde en suite a la configuration dynamique en utilsiant le fichier applicai
 
 ![image](./images/discovery/img_3.png)
 
--Configuration dinamique du gateway service:
+- Configuration dinamique du gateway service:
 
 On Fait la configuration dynamique en utilisant le discovery service  en donnant le nom definisant dans le fichier main du gateway service  un bean de type RouteLocator  qui va definir les routes en utilisant  discovery service pour la resolution des noms des services.
 ```java
@@ -159,6 +159,17 @@ DiscoveryClientRouteLocatorDefinition locator()
 
 ````
 
-On  peut a present consulter les service en paasant dans les  path des requestes les  noms des services en majuscule  et  le reste par la ressource demandée.
+On peut a present consulter les service en paasant dans les  path des requestes les  noms des services en majuscule  et  le reste par la ressource demandée :
+
+![image](./images/discovery/img_4.png)
+
+![image](./images/discovery/img_5.png)
 
 
+pour avoir la possibilité d'ecrire les url en miniscule on va jsute  ajouter a la configuration de gateway service  la propriete suivante :
+
+```application.yml
+spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+```
+
+![image](./images/discovery/img_6.png)
