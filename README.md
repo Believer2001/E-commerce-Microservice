@@ -30,7 +30,7 @@ on crée un projet spring boot avec les dépendances suivants:
 <li> Spring cloud cloud configuration</li>
 </ul>
 
-Les trois dernieres dependancec sont pour la mise en placae du microservice discovery et la configuration centralisée. Quant aux restes il sont juste pour
+Les trois dernieres dépendances sont pour la mise en placae du microservice discovery et la configuration centralisée. Quant aux restes il sont juste pour
 la misev en placec d un projet spring boot classique.
 </p>
 
@@ -55,9 +55,110 @@ Par defaut,  tous les attributs sont envoyer au client lorsqu'on utilise  spring
    - name : pour envoyer juste le nom 
    - email : pour envoyer juste l'email
  Cette projection est definit le package entiti : [all](./customer-service/src/main/java/enset/ma/customerservice/entities/CustomerProjection.java) ,
-     [name](./customer-service/src/main/java/enset/ma/customerservice/entities/EmailProjection.java)
+     [name](./customer-service/src/main/java/enset/ma/customerservice/entities/EmailProjection.java),[email](./customer-service/src/main/java/enset/ma/customerservice/entities/EmailProjection.java)
 
 
+<h3>1. Inventory  Service</h3>
 
+- Creation :
+On recree un  module   spring boot avec  meme dépendance que  customers services:
+
+- Execution de inventory service
+
+![image](./images/inventory/img.png)
+
+![image](./images/inventory/img_1.png)
+
+![image](./images/inventory/img_2.png)
+![image](./images/inventory/img_3.png)
+
+<h3>3. Creation du Gateway service </h3>
+
+- Creation : 
+On crée un module spring boot avece les dépendacne suivantes :
+- Gateway
+- Eureka Discovery Client
+- Spring Boot Actuator
+- Spring cloud config client
+
+- Execution du gateway service
+
+
+On fait la configuration du gateway service configuration statique dans le fichier application.yml  en definissant les route et on peut  à present  consulter les deux service precedent en passant per le gateway plutot que de faire  les requetes directements vers les service :
+ configuration sans passer par le discovery service on fait lac onfifguration en donnant l'url de chaque service dans le fichier application.ymal  du gateway service :
+```yamlspring:
+  spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: r1
+            uri: http://localhost:8090
+            predicates:
+              - Path= /customers/**
+
+          - id: r2
+            uri: http://localhost:8091
+            predicates:
+              - Path= /products/**
+```
+
+![image](./images/gateway/img.png)
+
+![image](./images/gateway/img_1.png)
+;
+
+On peut proceder à une configuration  en utilisant  eurka discovery service. 
+
+
+<h3>4. Creation du service de discovery </h3>
+
+Pour cela on va créer un nouveau module Sprind boot pour le service de discovery avec les dépendance suivante Eureka Server.
+
+pour activer discorvery server on utilise l'annotation @EnableEurekaServer dans la classe principale de l'application.
+
+On modifie le fichier de configuration précédente pour configurer le gateway commme suit :
+
+```yaml
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: r1
+            uri: lb://CUSTOMER-SERVICE
+            predicates:
+              - Path= /customers/**
+
+          - id: r2
+            uri: lb://INVENTORY-SERVICE
+            predicates:
+              - Path= /products/**
+```
+- Execution du discovery service
+
+![image](./images/discovery/img.png)
+En activant  les services créer  précedement on peut les voir dans l'interface de discovery service :
+![image](./images/discovery/img_1.png)
+
+On procde en suite a la configuration dynamique en utilsiant le fichier applicaiton.ymal creer precedemment dans le gateway service.
+
+![image](./images/discovery/img_2.png)
+
+![image](./images/discovery/img_3.png)
+
+-Configuration dinamique du gateway service:
+
+On Fait la configuration dynamique en utilisant le discovery service  en donnant le nom definisant dans le fichier main du gateway service  un bean de type RouteLocator  qui va definir les routes en utilisant  discovery service pour la resolution des noms des services.
+```java
+@SpringBootApplication  
+DiscoveryClientRouteLocatorDefinition locator()
+    ReactiveDiscoveryClient rdc, DiscoveryLocatorProperties dlp) {
+    return new DiscoveryClientRouteLocator(rdc, dlp);
+    }
+
+````
+
+On  peut a present consulter les service en paasant dans les  path des requestes les  noms des services en majuscule  et  le reste par la ressource demandée.
 
 
