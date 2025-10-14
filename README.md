@@ -197,4 +197,5 @@ On crée un module spring boot avec les dépendance suivantes :
 ![images](./images/billing/img_1.png)
 ![images](./images/billing/img_2.png)
 ![images](./images/billing/img_3.png)
-
+![images](./images/billing/img_4.png)
+![images](./images/billing/img_5.png)
