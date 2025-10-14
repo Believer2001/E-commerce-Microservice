@@ -24,19 +24,19 @@ public class InventoryServiceApplication {
             productRepository.save(Product.builder()
                     .id(UUID.randomUUID().toString())
                     .name("Computer")
-                    .price("320")
+                    .price(650.0)
                     .quantity(22)
                     .build());
             productRepository.save(Product.builder()
                     .id(UUID.randomUUID().toString())
                     .name("Printer")
-                    .price("220")
+                    .price(220.)
                     .quantity(12)
                     .build());
             productRepository.save(Product.builder()
                     .id(UUID.randomUUID().toString())
                     .name("Smartphone")
-                    .price("620")
+                    .price(620.)
                     .quantity(32)
                     .build());
             productRepository.findAll().forEach(p -> {

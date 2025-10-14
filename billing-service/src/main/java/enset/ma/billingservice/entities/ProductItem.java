@@ -22,7 +22,7 @@ private String productID;
 @ManyToOne
 private  Bill bill;
 private int quantity;
-private  double unitPrice;
+private  Double unitPrice;
 @Transient
 private Product product;
 

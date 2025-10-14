@@ -178,4 +178,23 @@ spring.cloud.gateway.discovery.locator.lower-case-service-id=true
 
 <h3>5. Creation de  billing service </h3>
 - Creation :
-- 
+On crée un module spring boot avec les dépendance suivantes :
+- Spring web
+- Spring Data JPA
+- H2 Database
+- Spring Boot DevTools
+- Lombok
+- Spring Boot Actuator
+- Spring cloud Eureka client
+- Spring cloud cloud configuration
+- OpenFeign
+- Spring HATEOAS
+- Rest Repositories
+
+- Execution du billing service
+
+![images](./images/billing/img.png)
+![images](./images/billing/img_1.png)
+![images](./images/billing/img_2.png)
+![images](./images/billing/img_3.png)
+
