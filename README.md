@@ -222,5 +222,10 @@ on fait initialisation du depot git .
 
 ![image](./images/configuration/img_3.png)
 On peut changer le parametre  à chaud sans arreter le service  en utilisant   fait un commit git apres la modification  du fichier application.yml  dans le depot git local  et on fait une requete post vers l'endpoint /actuator/refresh  du service concerné pour appliquer la nouvelle configuration.
+
 ![image](./images/configuration/img_4.png)
+
+![image](./images/configuration/img_5.png)
+
+![image](./images/configuration/img_6.png)
 
