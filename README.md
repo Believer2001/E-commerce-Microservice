@@ -199,3 +199,28 @@ On crée un module spring boot avec les dépendance suivantes :
 ![images](./images/billing/img_3.png)
 ![images](./images/billing/img_4.png)
 ![images](./images/billing/img_5.png)
+
+
+<h3>6. Creation du service du service de  configuration </h3>
+- Creation :
+On crée un module spring boot avec les dépendance suivantes :
+
+  - Spring cloud config server
+  - Spring Boot Actuator
+  - Execution du config service
+
+Au sien du module  de configuration on cree un   dossier  qu 'on initie avec un depot git local  en utilisant la commande git init  et on cree un fichier application.yml  qui va contenir la configuration de chaque microservice creer precedemment.
+on fait initialisation du depot git .
+
+- Execution du config service
+
+![image](./images/configuration/img.png)
+
+![image](./images/configuration/img_1.png)
+
+![image](./images/configuration/img_2.png)
+
+![image](./images/configuration/img_3.png)
+On peut changer le parametre  à chaud sans arreter le service  en utilisant   fait un commit git apres la modification  du fichier application.yml  dans le depot git local  et on fait une requete post vers l'endpoint /actuator/refresh  du service concerné pour appliquer la nouvelle configuration.
+![image](./images/configuration/img_4.png)
+
